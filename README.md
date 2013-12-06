@@ -1,4 +1,4 @@
-mljs
+mLjs
 ====
 
 Machine Learning library for Node.js

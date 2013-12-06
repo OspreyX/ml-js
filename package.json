@@ -1,6 +1,6 @@
 {
-  "name": "mljs",
-  "version": "0.0.0",
+  "name": "mLjs",
+  "version": "0.0.1",
   "description": "Machine Learning library for Node.js",
   "main": "index.js",
   "directories": {
