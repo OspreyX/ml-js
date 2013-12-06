@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/nicolaspanel/mljs/issues"
   },
-  "homepage": "https://github.com/nicolaspanel/mljs",
+  "homepage": "https://github.com/nicolaspanel/mLjs",
   "devDependencies": {
     "mocha": "~1.15.1",
     "should": "~2.1.1"
