@@ -13,8 +13,8 @@ describe 'QLearningAgent', ->
   action_index = 0
   beforeEach ->
     fakeQvalue = {
-      getQValue: (state, action_index) -> 0,
-      updateQValue: (state, action_index, value)->
+      getQValue: (state, action_index) -> 0
+      updateQValue: (state, action_index, value)-> value
       nb_features: 3 
       nb_actions: 2
     }
@@ -24,10 +24,10 @@ describe 'QLearningAgent', ->
     state= [0,0,0]
     agent.getAction(state).should.be.an.Number
   
-  it 'should respond to \'update_once\' with error', ->
-    
+  it 'should respond to \'learn\'', (done)->
     reward = 0
-    agent.update_once(init_state, action_index, new_state, reward).should.be.an.Number
+    agent.learn init_state, action_index, new_state, reward, (info)->
+      done
     
   it 'should have \'learning_rate\' property set to 0.1', ->
     agent.learning_rate.should.equal 0.1
@@ -49,8 +49,12 @@ describe 'QLearningAgent', ->
     it 'should have \'discount_factor\' updated', ->
       agent.discount_factor.should.equal 0.8
 
-    it 'should return a new value of 0.2 ', -> #(1.0 - 0.2) * 0 + 0.2 * ( 1 + 0.8 * 0 ) = 0.2
-      agent.update_once(init_state, action_index, new_state, 1).should.equal 0.2
+    it 'should return info after qvalue update', (done)-> #(1.0 - 0.2) * 0 + 0.2 * ( 1 + 0.8 * 0 ) = 0.2
+      agent.learn init_state, action_index, new_state, 1, (info)-> 
+        console.log info 
+        info.old_value.should.equal 0
+        info.new_value.should.equal 0.2
+        done
 
     
 

@@ -71,11 +71,18 @@ module.exports =
       actionValues = _.map [0...nb_actions], (a) -> qValues.getQValue(state, a)
       @exploration_policy.chooseAction(actionValues)
 
-    update_once: (init_state, action_index, new_state, reward)->
-      init_q_value = qValues.getQValue(init_state, action_index)
+    _updateQValue: (state, action, new_value, info, cb)->
+      epoch = qValues.updateQValue(state, action, new_value)
+      cb info
+
+    learn: (init_state, action_index, new_state, reward, cb)->
+      init_qvalue = qValues.getQValue(init_state, action_index)
       nextActionValues = _.map [0,1], (a) -> qValues.getQValue(new_state, a)
-      newValue = (1.0 - @learning_rate) * init_q_value + @learning_rate * (reward + @discount_factor * _.max( nextActionValues ))
-      qValues.updateQValue(init_state, action_index, newValue)
-      newValue - init_q_value
+      new_value = (1.0 - @learning_rate) * init_qvalue + @learning_rate * (reward + @discount_factor * _.max( nextActionValues ))
+      info = {
+        old_value: init_qvalue
+        new_value: new_value
+      }
+      process.nextTick(this._updateQValue(init_state, action_index, new_value, info, cb))
   
       
