@@ -1,5 +1,5 @@
 {
-  "name": "mLjs",
+  "name": "ml-js",
   "version": "0.0.2",
   "description": "Machine Learning library for Node.js",
   "main": "index.js",
