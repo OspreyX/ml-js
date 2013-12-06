@@ -1,0 +1,35 @@
+{
+  "name": "mljs",
+  "version": "0.0.0",
+  "description": "Machine Learning library for Node.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolaspanel/mljs.git"
+  },
+  "keywords": [
+    "machine",
+    "learning",
+    "ml",
+    "qlearing",
+    "neural",
+    "networks",
+    "svm",
+    "support",
+    "vector",
+    "machine",
+    "agent"
+  ],
+  "author": "Nicolas Panel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolaspanel/mljs/issues"
+  },
+  "homepage": "https://github.com/nicolaspanel/mljs"
+}
