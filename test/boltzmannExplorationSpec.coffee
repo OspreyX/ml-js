@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test'
 assert = require 'assert'
 _ = require 'underscore'
 require 'should'
-qLearning = require '../js/qLearning'
+qLearning = require '../bin/qLearning'
 
 
 describe 'BoltzmannExploration', ->

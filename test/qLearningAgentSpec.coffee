@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test'
 assert = require 'assert'
 require 'should'
-qLearning = require '../js/qLearning'
+qLearning = require '../bin/qLearning'
 _ = require 'underscore'
 
 
