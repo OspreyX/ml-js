@@ -29,7 +29,7 @@
   "author": "Nicolas Panel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nicolaspanel/mljs/issues"
+    "url": "https://github.com/nicolaspanel/mLjs/issues"
   },
   "homepage": "https://github.com/nicolaspanel/mLjs",
   "devDependencies": {
