@@ -51,7 +51,6 @@ describe 'QLearningAgent', ->
 
     it 'should return info after qvalue update', (done)-> #(1.0 - 0.2) * 0 + 0.2 * ( 1 + 0.8 * 0 ) = 0.2
       agent.learn init_state, action_index, new_state, 1, (info)-> 
-        console.log info 
         info.old_value.should.equal 0
         info.new_value.should.equal 0.2
         done

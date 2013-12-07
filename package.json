@@ -1,6 +1,6 @@
 {
   "name": "ml-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Machine Learning library for Node.js",
   "main": "index.js",
   "directories": {
@@ -40,6 +40,7 @@
     "coffee-script": "~1.6.3",
     "underscore": "~1.5.2",
     "fann": "~0.2.3",
-    "numeric": "~1.2.6"
+    "numeric": "~1.2.6",
+    "sylvester": "0.0.21"
   }
 }
