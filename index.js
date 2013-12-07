@@ -1,3 +1,3 @@
 require("coffee-script");
-require("./js/classificationEvaluator");
-require("./js/qLearing");
+require("./bin/classificationEvaluator");
+require("./bin/qLearing");
