@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script"
+    "test": "mocha --compilers coffee:coffee-script",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/mocha -- --ui bdd -R spec -t 5000"
   },
   "repository": {
     "type": "git",
@@ -34,13 +35,15 @@
   "homepage": "https://github.com/nicolaspanel/mLjs",
   "devDependencies": {
     "mocha": "~1.15.1",
-    "should": "~2.1.1"
+    "should": "~2.1.1",
+    "istanbul": "~0.1.46"
   },
   "dependencies": {
     "coffee-script": "~1.6.3",
     "underscore": "~1.5.2",
     "fann": "~0.2.3",
     "numeric": "~1.2.6",
-    "sylvester": "0.0.21"
+    "sylvester": "0.0.21",
+    "async": "~0.2.9"
   }
 }

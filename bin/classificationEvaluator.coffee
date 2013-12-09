@@ -1,11 +1,16 @@
 _ = require 'underscore'
 numeric = require 'numeric' 
+async = require 'async' 
 
 module.exports = 
+  ###
+  NOTICE : ClassificationEvaluator assumes your inputs  
+  are properly normalized between 0 and 1 
+  ###
   ClassificationEvaluator: class ClassificationEvaluator
     constructor: (options) ->
       options = options ? {}
-      @nfold = options.nfold ? 5
+      @kfold = options.kfold ? 10
     
     _computeFScore: (precision, recall) -> 
       if (recall == 0 and precision == 0)
@@ -23,13 +28,21 @@ module.exports =
       onces = _.map [1..nb_labels], (i)->1
 
       getIndex = (label)->
-        _.indexOf labels, label
+        index = _.indexOf labels, label
+        if index == -1 #label existing in trainning set but not in test set
+          labels.push label
+          index = nb_labels
+          for i in [0...nb_labels]
+            results[i][index] = 0
+          nb_labels++
+          results[index]=_.map [1..nb_labels], (i)->0
+        index
 
       for ex in test_set
         prediction = classifier.predict ex.state
         expected = ex.expected
         results[getIndex prediction][getIndex expected] += 1
-      
+
       sum_predictions = numeric.dot(results, onces)
       sum_expected = numeric.dot( numeric.transpose(results) , onces)
 
@@ -62,13 +75,58 @@ module.exports =
         lowest_recall: _.min(_.pluck(per_class_reports, 'recall'))
         classReports: per_class_reports
       }
+
       cb report
     
     ###
     NOTICE : this function assumes your classifier is already trained 
     ###
     evaluate: (classifier, test_set, cb)->
-      process.nextTick(this._processResult(classifier, test_set, cb))
+      async.nextTick(this._processResult(classifier, test_set, cb))
+
+    _trainAndEvaluateSet: (set, callback)->
+      set.classifier.train set.trainning
+      this.evaluate set.classifier, set.test, (report)->
+        callback null, report
+    
+    _performKFoldCrossValidation: (classifier, data_set, cb)->
+      data = _.shuffle data_set 
+
+      nb_example_per_subset = Math.floor(data.length / @kfold)
+      data_subsets = []
+      k = 0
+      for i in [0...@kfold]
+        subset = data[k...k + nb_example_per_subset]
+        k += nb_example_per_subset
+        data_subsets.push subset
+
+      _sets = []
+      for i in [0...@kfold]
+        i_trainning_set = []
+        for j in [0...@kfold]
+          if j != i
+            i_trainning_set = i_trainning_set.concat data_subsets[j]
+        set = { 
+          trainning: i_trainning_set
+          test: data_subsets[i]
+          classifier: _.clone classifier
+        }
+        _sets.push set        
+      kfold = @kfold
+      async.map _sets, this._trainAndEvaluateSet.bind(this), (err, reports)->
+        sumAccuracies = 0
+        for r in reports
+          sumAccuracies+=r.accuracy
         
+        report = {
+          kfold: kfold
+          average_accuracy: sumAccuracies / kfold
+        }
+        cb report
+        
+      
+    performKFoldCrossValidation: (classifier, data_set, cb)->
+      async.nextTick( this._performKFoldCrossValidation(classifier, data_set, cb))
+
       
       

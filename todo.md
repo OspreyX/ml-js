@@ -1,2 +1,0 @@
-#Todos
-* Add installation guide
