@@ -2,14 +2,14 @@ process.env.NODE_ENV = 'test'
 assert = require 'assert'
 _ = require 'underscore'
 require 'should'
-mljs = require '../bin/mljs'
+ml = require '../bin/ml'
 
 
 describe 'BoltzmannExploration', ->
   expl = null
 
   beforeEach ->
-    expl = new mljs.BoltzmannExploration
+    expl = new ml.BoltzmannExploration
 
   it 'should have temperature set to 0.25 by default', ->
     expl.temperature.should.equal 0.25
