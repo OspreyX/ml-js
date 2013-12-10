@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test'
 assert = require 'assert'
 require 'should'
 _ = require 'underscore'
-mljs = require '../bin/mljs'
+ml = require '../bin/ml'
 
 describe 'ClassificationEvaluator', ->
   evaluator = null
@@ -43,7 +43,7 @@ describe 'ClassificationEvaluator', ->
   }
 
   beforeEach ->
-    evaluator = new mljs.ClassificationEvaluator 
+    evaluator = new ml.ClassificationEvaluator 
   
   
       

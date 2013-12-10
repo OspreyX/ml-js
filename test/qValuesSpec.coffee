@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test'
 assert = require 'assert'
 require 'should'
-mljs = require '../bin/mljs'
+ml = require '../bin/ml'
 _ = require 'underscore'
 
 
@@ -20,7 +20,7 @@ describe 'ContinuousQValues', ->
   ]
 
   beforeEach ->
-    qValues = new mljs.ContinuousQValues 2, 2
+    qValues = new ml.ContinuousQValues 2, 2
 
   it 'should respond to \'getQValue\' with the action value', ->
     action_index = 0
