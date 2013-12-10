@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test'
 assert = require 'assert'
 require 'should'
-qLearning = require '../bin/qLearning'
+mljs = require '../bin/mljs'
 _ = require 'underscore'
 
 
@@ -18,7 +18,7 @@ describe 'QLearningAgent', ->
       nb_features: 3 
       nb_actions: 2
     }
-    agent = new qLearning.QLearningAgent(fakeQvalue)
+    agent = new mljs.QLearningAgent(fakeQvalue)
     
   it 'should respond to \'getAction\' with the action index', ->
     state= [0,0,0]
@@ -36,12 +36,12 @@ describe 'QLearningAgent', ->
     agent.discount_factor.should.equal 0.9
 
   it 'should have Boltzmann exploration policy by default', ->
-    agent.exploration_policy.should.be.an.instanceOf qLearning.BoltzmannExploration
+    agent.exploration_policy.should.be.an.instanceOf mljs.BoltzmannExploration
     
   describe 'when initialized with custom parameters', ->
     options = { learning_rate: 0.2, discount_factor: 0.8}
     beforeEach ->
-      agent = new qLearning.QLearningAgent(fakeQvalue, options)
+      agent = new mljs.QLearningAgent(fakeQvalue, options)
     
     it 'should have \'learning_rate\' updated', ->
       agent.learning_rate.should.equal 0.2

@@ -1,11 +1,11 @@
 process.env.NODE_ENV = 'test'
 assert = require 'assert'
 require 'should'
-qLearning = require '../bin/qLearning'
+mljs = require '../bin/mljs'
 _ = require 'underscore'
 
 
-describe 'NNQValuesManager', ->
+describe 'ContinuousQValues', ->
   qValues = null 
   updated_xor = [
   #  A, B, a -> reward
@@ -20,7 +20,7 @@ describe 'NNQValuesManager', ->
   ]
 
   beforeEach ->
-    qValues = new qLearning.ContinuousQValues 2, 2
+    qValues = new mljs.ContinuousQValues 2, 2
 
   it 'should respond to \'getQValue\' with the action value', ->
     action_index = 0
