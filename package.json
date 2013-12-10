@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/mocha -- --ui bdd -R spec -t 5000"
+    "test": "mocha --compilers coffee:coffee-script"
   },
   "repository": {
     "type": "git",

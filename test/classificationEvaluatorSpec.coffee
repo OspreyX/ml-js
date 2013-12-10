@@ -45,114 +45,107 @@ describe 'ClassificationEvaluator', ->
   beforeEach ->
     evaluator = new evaluators.ClassificationEvaluator 
   
-  describe 'default parameter', ->  
-    it 'should have kfold set to 10',  ->
-      evaluator.kfold.should.equal 10
- 
-  describe 'ClassificationEvaluator', ->
-
-    describe 'evaluate classifier with test set', ->
+  
       
-      describe 'with naive classifier', ->
-
-        it 'accuracy should be 0.25', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            report.accuracy.should.equal 0.25
-            done
-        
-        it 'fscore should be 0', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            report.lowest_fscore.should.equal 0
-            done
-        it 'lowest precision should be 0', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            report.lowest_precision.should.equal 0
-            done
-        it 'lowest recall should be 0', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            report.lowest_recall.should.equal 0
-            done
-
-        it 'recall should be 1 for class \'A\'', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            aReport = _.findWhere(report.classReports, {class: 'A'})
-            aReport.recall.should.equal 1
-            done
-        
-        it 'precision should be 0.25 for class \'A\'', (done) ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            aReport = _.findWhere(report.classReports, {class: 'A'})
-            aReport.precision.should.equal 0.25
-            done
-          
-        it 'fscore should be 0.4 for class \'A\'', (done)->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            aReport = _.findWhere(report.classReports, {class: 'A'})
-            aReport.fscore.should.equal 0.4
-            done
-
-        it 'recall should be 0 for class \'B\'', (done)  ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            bReport = _.findWhere(report.classReports, {class: 'B'})
-            bReport.recall.should.equal 0
-            done
-        
-        it 'precision should be 0 for class \'B\'', (done) ->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            bReport = _.findWhere(report.classReports, {class: 'B'})
-            bReport.precision.should.equal 0
-            done
-          
-        it 'fscore should be 0 for class \'B\'', (done)->
-          evaluator.evaluate bad_classifier, test_set, (report)->
-            bReport = _.findWhere(report.classReports, {class: 'B'})
-            bReport.fscore.should.equal 0
-            done
-      
-      describe 'with perfect classifier', ->
-          
-        it 'accuracy should be 1', (done)  ->
-          evaluator.evaluate perfect_classifier, test_set, (report)->
-            report.accuracy.should.equal 1
-            report.lowest_fscore.should.equal 1
-            report.lowest_precision.should.equal 1
-            report.lowest_recall.should.equal 1
-            done
-
-        it 'recall should be 1 for all classes', (done)  ->
-          evaluator.evaluate perfect_classifier, test_set, (report)->
-            for classReport in report.classReports
-              classReport.recall.should.equal 1
-            done
-        
-        it 'precision should be 1 for all classes', (done) ->
-          evaluator.evaluate perfect_classifier, test_set, (report)->
-            for classReport in report.classReports
-              classReport.precision.should.equal 1
-            done
-          
-        it 'fscore should be 1 for all classes', (done)->
-          evaluator.evaluate perfect_classifier, test_set, (report)->
-            for classReport in report.classReports
-              classReport.fscore.should.equal 1
-            done
-
-    describe 'perform k-fold cross validation', ->
+  describe 'when evaluates naive classifier', ->
     
-      data_set = test_set      
-      
-      beforeEach ->
-        evaluator.kfold = 4
-      describe 'with naive classifier', ->
+    it 'should use only one subset (ie k = 1)', (done)  =>
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        report.kfold.should.equal 1
+        done()
+        
+    it 'should report an accuracy of 0.25', (done)  =>
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        report.average_accuracy.should.equal 0.25
+        done()
 
-        
-        it 'should ', (done)  ->
-          test = {done: -> done}
-          console.log this
-          evaluator.performKFoldCrossValidation bad_classifier, data_set, (report)->
-            report.kfold.should.equal 4
-            done
-        
+    it 'should report a fscore of 0', (done)  ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        report.average_fscore.should.equal 0
+        done()
+    
+    it 'should report a precision of 0', (done)  ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        report.average_precision.should.equal 0
+        done()
+    
+    it 'should report a recall of 0', (done)  ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        report.average_recall.should.equal 0
+        done()
+
+    it 'should report a recall of 1 for class \'A\'', (done)  ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0].classReports
+        aReport = _.findWhere(subReport, {class: 'A'})
+        aReport.recall.should.equal 1
+        done()
+    
+    it 'should report a precision of 0.25 for class \'A\'', (done) ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0]
+        aReport = _.findWhere(subReport.classReports, {class: 'A'})
+        aReport.precision.should.equal 0.25
+        done()
+      
+    it 'should report a fscore of 0.4 for class \'A\'', (done)->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0]
+        aReport = _.findWhere(subReport.classReports, {class: 'A'})
+        aReport.fscore.should.equal 0.4
+        done()
+
+    it 'should report a recall of 0 for class \'B\'', (done)  ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0]
+        bReport = _.findWhere(subReport.classReports, {class: 'B'})
+        bReport.recall.should.equal 0
+        done()
+    
+    it 'should report a precision of 0 for class \'B\'', (done) ->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0]
+        bReport = _.findWhere(subReport.classReports, {class: 'B'})
+        bReport.precision.should.equal 0
+        done()
+      
+    it 'should report a fscore of 0 for class \'B\'', (done)->
+      evaluator.evaluate bad_classifier, test_set, (report)->
+        subReport = report.subsetsReports[0]
+        bReport = _.findWhere(subReport.classReports, {class: 'B'})
+        bReport.fscore.should.equal 0
+        done()
+  
+  describe 'when perform n-fold cross validation on perfect classifier', ->
+      
+    it 'should report an accuracy of 1', (done)  ->
+      evaluator.performKFoldCrossValidation 8, perfect_classifier, test_set, (report)->
+        report.average_accuracy.should.equal 1
+        report.average_fscore.should.equal 1
+        report.average_precision.should.equal 1
+        report.average_recall.should.equal 1
+        done()
+
+    it 'should report a recall of 1 for all classes', (done)  ->
+      evaluator.performKFoldCrossValidation 8, perfect_classifier, test_set, (report)->
+        for subset in report.subsetsReports
+          for classReport in subset.classReports
+            classReport.recall.should.equal 1
+        done()
+    
+    it 'should report a precision of 1 for all classes', (done) ->
+      evaluator.performKFoldCrossValidation 8, perfect_classifier, test_set, (report)->
+        for subset in report.subsetsReports
+          for classReport in subset.classReports
+            classReport.precision.should.equal 1
+        done()
+      
+    it 'should report a fscore of 1 for all classes', (done)->
+      evaluator.performKFoldCrossValidation 8, perfect_classifier, test_set, (report)->
+        for subset in report.subsetsReports
+          for classReport in subset.classReports
+            classReport.fscore.should.equal 1
+        done()
 
 
             
