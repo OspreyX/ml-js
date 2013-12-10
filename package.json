@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script"
+    "test": "mocha --compilers coffee:coffee-script --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,6 @@
     "underscore": "~1.5.2",
     "fann": "~0.2.3",
     "numeric": "~1.2.6",
-    "sylvester": "0.0.21",
     "async": "~0.2.9"
   }
 }
