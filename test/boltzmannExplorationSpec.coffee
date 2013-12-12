@@ -13,7 +13,7 @@ describe 'BoltzmannExploration', ->
   beforeEach ->
     expl = new ml.BoltzmannExploration options
 
-  it 'should have temperature set to 0.25 by default', ->
+  it 'should have temperature set to 0.25', ->
     expl.temperature.should.equal 0.25
 
   it 'should return [0.5, 0.5] when asking probabilities for [0.5,0.5]', ->
