@@ -53,7 +53,9 @@ describe 'ContinuousQValues', ->
       qValues.getQValue([0, 1], 0).should.be.approximately 0.0, 1e-1
 
     it 'should predict 0 as the best action (i.e. result) for 0 XOR 0',->
-      actionValues = _.map [0,1], (a) -> qValues.getQValue([0,0], a)
+      actionValues = _.map [0,1], (a) ->
+        qValues.getQValue([0,0], a)
+
       maxValue = _.max actionValues
       action_index = _.indexOf actionValues, maxValue
       action_index.should.equal 0

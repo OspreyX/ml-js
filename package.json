@@ -33,15 +33,14 @@
   },
   "homepage": "https://github.com/nicolaspanel/mLjs",
   "devDependencies": {
-    "mocha": "~1.15.1",
-    "should": "~2.1.1",
-    "istanbul": "~0.1.46"
+    "mocha": "latest",
+    "should": "latest"
   },
   "dependencies": {
-    "coffee-script": "~1.6.3",
-    "underscore": "~1.5.2",
+    "coffee-script": "latest",
+    "underscore": "latest",
     "fann": "~0.2.3",
-    "numeric": "~1.2.6",
-    "async": "~0.2.9"
+    "numeric": "latest",
+    "async": "latest"
   }
 }

@@ -11,10 +11,10 @@ where Q(s, a) is action's a estimation (usefulness)
 at state s and t is Temperature.
 ###
 exports.BoltzmannExploration = class BoltzmannExploration
-  constructor: (temperature) ->
-    if temperature < 0
-      temperature = 0
-    @temperature = temperature ? 0.25
+  constructor: (options) ->
+    options = options ? {}
+    @temperature = options.temperature ? 0.25
+    @temperature = 0 unless @temperature >= 0
 
 
   getProbabilities: (action_estimates)->

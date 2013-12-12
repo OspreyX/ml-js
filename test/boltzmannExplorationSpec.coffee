@@ -7,9 +7,11 @@ ml = require '../bin/ml'
 
 describe 'BoltzmannExploration', ->
   expl = null
-
+  options = {
+    temperature: 0.25
+  }
   beforeEach ->
-    expl = new ml.BoltzmannExploration
+    expl = new ml.BoltzmannExploration options
 
   it 'should have temperature set to 0.25 by default', ->
     expl.temperature.should.equal 0.25

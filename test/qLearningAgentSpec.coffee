@@ -39,7 +39,11 @@ describe 'QLearningAgent', ->
     agent.exploration_policy.should.be.an.instanceOf ml.BoltzmannExploration
     
   describe 'when initialized with custom parameters', ->
-    options = { learning_rate: 0.2, discount_factor: 0.8}
+    options = {
+      learning_rate: 0.2,
+      discount_factor: 0.8,
+      exploration_policy: new ml.BoltzmannExploration
+    }
     beforeEach ->
       agent = new ml.QLearningAgent(fakeQvalue, options)
     
