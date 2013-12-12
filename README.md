@@ -23,13 +23,13 @@ Finally, you should be able to install all npm dependancies :  `npm install ml-j
 
 ## Supported ML techniques
 ml-js currently supports : 
-* Supervised learning :
-  * Neural Networks through FANN library
-* Reinforcement learning :
-  *  QLearning
-    *  Continuous states (als called features) / discete actions 
-  *  Exploration policies
-    *  BoltzmannExploration
+|- Supervised learning :
+|   |- `fann` - Neural Networks through FANN library
+|- Reinforcement learning :
+|   |- `QLearning`, model-free reinforcement learning technique
+|   |   |- `ContinuousQValues` Continuous states  / discrete actions
+|   |- Exploration policies
+|   |   |- `BoltzmannExploration`
 
 ## Getting started
 
@@ -37,7 +37,7 @@ ml-js currently supports :
 [Q-learning](http://en.wikipedia.org/wiki/Q-learning) is a model-free reinforcement learning technique. Specifically, Q-learning can be used to find an optimal action-selection policy for any given [MDP](http://en.wikipedia.org/wiki/Markov_decision_process).
 
 ```coffeescript
-mljs = require 'ml-js'
+ml = require 'ml-js'
 utils = require 'utils' 
 EventEmitter = require('events').EventEmitter
 
@@ -45,14 +45,14 @@ myprocess = new SomeProcess
 utils.inherits SomeProcess, EventEmitter 
 
 
-qValues = new mljs.ContinuousQValues nb_features, nb_actions
+qValues = new ml.ContinuousQValues nb_features, nb_actions
 
 options = {
   learning_rate: 0.1
   discount_factor: 0.9
-  exploration_policy: new mljs.BoltzmannExploration 0.2 # temperature 
+  exploration_policy: new ml.BoltzmannExploration 0.2 # temperature
 }
-agent = new mljs.QLearningAgent qValues, options
+agent = new ml.QLearningAgent qValues, options
 
 myprocess.on 'do_something', (current_state)->
   next_action_index = agent.getAction current_state
