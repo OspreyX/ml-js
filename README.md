@@ -23,13 +23,12 @@ Finally, you should be able to install all npm dependancies :  `npm install ml-j
 
 ## Supported ML techniques
 ml-js currently supports : 
-|- Supervised learning :
-|   |- `fann` - Neural Networks through FANN library
-|- Reinforcement learning :
-|   |- `QLearning`, model-free reinforcement learning technique
-|   |   |- `ContinuousQValues` Continuous states  / discrete actions
-|   |- Exploration policies
-|   |   |- `BoltzmannExploration`
+* Supervised learning :
+  * `fann` - Neural Networks through FANN library
+* Reinforcement learning :
+  * `QLearning`, model-free reinforcement learning technique
+*  Exploration policies
+  * `BoltzmannExploration`
 
 ## Getting started
 

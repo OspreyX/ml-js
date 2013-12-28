@@ -1,7 +1,8 @@
 boltzmann = require './explorationPolicies/boltzmannExploration'
 _ = require 'underscore'
+events = require 'events'
 
-exports.QLearningAgent = class QLearningAgent
+exports.QLearningAgent = class QLearningAgent extends events.EventEmitter
   qValues = null
   nb_actions = null
   constructor: (q_values_manager, options) ->

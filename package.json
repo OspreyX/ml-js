@@ -1,6 +1,6 @@
 {
   "name": "ml-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Machine Learning library for Node.js",
   "main": "./bin/ml.js",
   "directories": {
