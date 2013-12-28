@@ -44,8 +44,7 @@ describe 'ClassificationEvaluator', ->
 
   beforeEach ->
     evaluator = new ml.ClassificationEvaluator 
-  
-  
+
       
   describe 'when evaluates naive classifier', ->
     

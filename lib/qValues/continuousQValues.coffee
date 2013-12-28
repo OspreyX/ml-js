@@ -1,6 +1,7 @@
 fann = require 'fann'
+evens= require 'events'
 
-exports.ContinuousQValues = class ContinuousQValues
+exports.ContinuousQValues = class ContinuousQValues extends evens.EventEmitter
   constructor: (nb_features, nb_actions) ->
     @nb_features = nb_features
     @nb_actions = nb_actions
@@ -17,4 +18,6 @@ exports.ContinuousQValues = class ContinuousQValues
   updateQValue: (state, action_index, value)-> 
     new_value = []
     new_value.push value
+    old_reward= @nets[action_index].run(state)[0]
     @nets[action_index].train_once(state, new_value)
+    this.emit 'learned_once', Math.pow(old_reward - value, 2) / 2

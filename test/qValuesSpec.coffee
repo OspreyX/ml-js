@@ -31,8 +31,25 @@ describe 'ContinuousQValues', ->
     qValues.nets.length.should.equal 2
 
   it 'should contains iteratives neural networks', ->
-    net.training_algorithm.should.equal("incremental") for net in qValues.nets 
-  
+    net.training_algorithm.should.equal("incremental") for net in qValues.nets
+
+  describe 'when train once', ->
+    test_state = [1, 0]
+    action = 1
+    expected_reward = 1
+    called = false
+
+    beforeEach (done_cb) ->
+      init_reward = qValues.getQValue test_state, action
+      qValues.on 'learned_once', (cost)->
+        cost.should.equal (1/2 * Math.pow(init_reward - expected_reward, 2))
+        called= true
+        done_cb()
+      qValues.updateQValue test_state, action, expected_reward
+
+    it 'should raise \'learned_once\' event', ->
+      called.should.be.true
+
   describe 'when trainned with xor example', ->
     beforeEach ->
       for i in [1..5000]
