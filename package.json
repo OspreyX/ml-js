@@ -34,7 +34,11 @@
   "homepage": "https://github.com/nicolaspanel/ml-js",
   "devDependencies": {
     "mocha": "latest",
-    "should": "latest"
+    "should": "latest",
+    "grunt": "~0.4.1",
+    "grunt-cli": "latest",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-mocha-test": "~0.2.2"
   },
   "dependencies": {
     "coffee-script": "latest",
