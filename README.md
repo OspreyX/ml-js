@@ -32,16 +32,15 @@ ml-js currently supports :
 
 ## Getting started
 
-### QLearning pseudo code 
+### QLearning Example
 [Q-learning](http://en.wikipedia.org/wiki/Q-learning) is a model-free reinforcement learning technique. Specifically, Q-learning can be used to find an optimal action-selection policy for any given [MDP](http://en.wikipedia.org/wiki/Markov_decision_process).
 
 ```coffeescript
 ml = require 'ml-js'
-utils = require 'utils' 
 
 myprocess = new SomeProcess
 
-qValues = new ml.ContinuousQValues nb_features, nb_actions
+qValues = new ml.CSDAQValues nb_features, nb_actions
 
 options = {
   learning_rate: 0.1
@@ -57,3 +56,7 @@ myprocess.on 'do_something', (currentState)->
 myprocess.on 'feedback_received', (initState, action, newState, reward)->
     agent.learn initState, action, newState, reward
 ```
+
+Availables QValues managers : 
+ * `CSDAQValues` for  **C**ontinuous **S**tates and **D**iscrete **A**ctions QValues. It uses neural networks to perform learning on continuous states.
+ * `DSDAQValues` for  **D**iscrete **S**tates and **D**iscrete **A**ctions QValues   
