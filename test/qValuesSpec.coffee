@@ -5,7 +5,7 @@ ml = require '../bin/ml'
 _ = require 'underscore'
 
 
-describe 'ContinuousQValues', ->
+describe 'Continuous State Discrete Actions QValues', ->
   qValues = null 
   updated_xor = [
   #  A, B, a -> reward
@@ -20,7 +20,7 @@ describe 'ContinuousQValues', ->
   ]
 
   beforeEach ->
-    qValues = new ml.ContinuousQValues 2, 2
+    qValues = new ml.CSDAQValues 2, 2
 
   it 'should respond to \'getQValue\' with the action value', ->
     action_index = 0

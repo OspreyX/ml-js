@@ -2,7 +2,7 @@ require("coffee-script");
 exports.fann = require('fann');
 
 // Q-Values
-exports.ContinuousQValues = require('../lib/qValues/continuousQValues').ContinuousQValues;
+exports.CSDAQValues = require('../lib/qValues').CSDAQValues;
 
 // Explorations policies
 exports.BoltzmannExploration = require('../lib/explorationPolicies/boltzmannExploration').BoltzmannExploration;

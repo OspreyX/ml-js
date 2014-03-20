@@ -1,7 +1,7 @@
 fann = require 'fann'
 evens= require 'events'
 
-exports.ContinuousQValues = class ContinuousQValues extends evens.EventEmitter
+exports.CSDAQValues = class CSDAQValues extends evens.EventEmitter
   constructor: (nb_features, nb_actions) ->
     @nb_features = nb_features
     @nb_actions = nb_actions
