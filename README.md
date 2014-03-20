@@ -38,11 +38,8 @@ ml-js currently supports :
 ```coffeescript
 ml = require 'ml-js'
 utils = require 'utils' 
-EventEmitter = require('events').EventEmitter
 
 myprocess = new SomeProcess
-utils.inherits SomeProcess, EventEmitter 
-
 
 qValues = new ml.ContinuousQValues nb_features, nb_actions
 
@@ -53,12 +50,10 @@ options = {
 }
 agent = new ml.QLearningAgent qValues, options
 
-myprocess.on 'do_something', (current_state)->
-  next_action_index = agent.getAction current_state
-  next_action = actions[next_action_index]
+myprocess.on 'do_something', (currentState)->
+  next_action = agent.getAction currentState
   myprocess.do next_action
   
-myprocess.on 'feedback_received', (init_state, action_index, new_state, reward)->
-    agent.learn init_state, action_index, new_state, reward, (info)->
-      console.log info
+myprocess.on 'feedback_received', (initState, action, newState, reward)->
+    agent.learn initState, action, newState, reward
 ```
