@@ -5,7 +5,7 @@ exports.fann = require('fann');
 exports.CSDAQValues = require('../lib/qValues').CSDAQValues;
 
 // Explorations policies
-exports.BoltzmannExploration = require('../lib/explorationPolicies/boltzmannExploration').BoltzmannExploration;
+exports.BoltzmannExploration = require('../lib/explorationPolicies').BoltzmannExploration;
 
 // Reinforcement learning
 exports.QLearningAgent = require('../lib/qLearningAgent').QLearningAgent;

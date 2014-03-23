@@ -1,14 +1,20 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         mochaTest: {
-            files: [ 'test/*Spec.js']
+            test: {
+                options: {
+                  reporter: 'spec'
+                },
+                src: ['test/*Spec.js']
+            }
         },
         jshint: {   
             all: [ 'gruntfile.js', 'lib/*.js', 'test/*.js'],
             options: {
                 globals: {
                     it: true,
-                    describe: true
+                    describe: true,
+                    beforeEach: true
                 },
                 curly: true,
                 eqeqeq: true,
@@ -22,7 +28,8 @@ module.exports = function (grunt) {
                 eqnull: true,
                 node: true,
                 strict: false,
-                es5: true
+                es5: true,
+                expr: true
             }
         }
     });

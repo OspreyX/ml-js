@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --compilers coffee:coffee-script --reporter spec"
+    "test": "grunt"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,8 @@
     "grunt": "~0.4.1",
     "grunt-cli": "latest",
     "grunt-contrib-jshint": "~0.4.3",
-    "grunt-mocha-test": "~0.2.2"
+    "grunt-mocha-test": "~0.2.2",
+    "sinon": "~1.9.0"
   },
   "dependencies": {
     "coffee-script": "latest",
