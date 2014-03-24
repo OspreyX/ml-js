@@ -3,7 +3,7 @@ ml-js
 
 Machine Learning library for Node.js
 
-Status : Under development, v0.0.3
+Status : Under development, v0.0.9
 
 ## Installation
 ml-js depends on [FANN](http://leenissen.dk/fann/wp/) (Fast Artificial Neural Network Library) witch is a free, open source and high performence neural network library.
