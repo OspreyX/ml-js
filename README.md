@@ -58,5 +58,4 @@ myprocess.on 'feedback_received', (initState, action, newState, reward)->
 ```
 
 Availables QValues managers : 
- * `CSDAQValues` for  **C**ontinuous **S**tates and **D**iscrete **A**ctions QValues. It uses neural networks to perform learning on continuous states.
- * `DSDAQValues` for  **D**iscrete **S**tates and **D**iscrete **A**ctions QValues   
+ * `CSDAQValues` for  Continuous States and Discrete Actions QValues. It uses neural networks to perform learning on continuous states.  

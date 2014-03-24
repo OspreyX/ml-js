@@ -1,5 +1,4 @@
-var assert = require ('assert'),
-    should = require ('should'),
+var should = require ('should'),
     _ = require ('underscore'),
     ml = require ('../bin/ml');
 

@@ -39,7 +39,8 @@
     "grunt-cli": "latest",
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-mocha-test": "~0.2.2",
-    "sinon": "~1.9.0"
+    "sinon": "~1.9.0",
+    "blanket": "~1.1.6"
   },
   "dependencies": {
     "coffee-script": "latest",
