@@ -47,6 +47,7 @@
     "underscore": "latest",
     "fann": "~0.2.3",
     "numeric": "latest",
-    "async": "latest"
+    "async": "latest",
+    "node-svm": "latest"
   }
 }
