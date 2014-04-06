@@ -3,7 +3,9 @@ ml-js
 
 Machine Learning library for Node.js
 
-Status : Under development, v0.0.9
+Status : Under development
+
+[![NPM](https://nodei.co/npm/ml-js.png?downloads=true)](https://nodei.co/npm/ml-js/)
 
 ## Installation
 ml-js depends on [FANN](http://leenissen.dk/fann/wp/) (Fast Artificial Neural Network Library) witch is a free, open source and high performence neural network library.
@@ -19,12 +21,13 @@ To build great app with it :
   * run `cmake .` and `sudo make install`
   * run `sudo ldconfig`
 
-Finally, you should be able to install all npm dependancies :  `npm install ml-js --save`
+Finally, you should be able to install all npm dependancies with  `npm install ml-js --save`
 
 ## Supported ML techniques
 ml-js currently supports : 
 * Supervised learning :
-  * `fann` - Neural Networks through FANN library
+  * `fann` - Neural Networks provided by [node-fann](https://github.com/rlidwka/node-fann) addon
+  * `svm`  - Support vector machine provided by [node-svm](https://github.com/nicolaspanel/node-svm) addon
 * Reinforcement learning :
   * `QLearning`, model-free reinforcement learning technique
 *  Exploration policies
