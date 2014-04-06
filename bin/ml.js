@@ -1,5 +1,6 @@
 require("coffee-script");
 exports.fann = require('fann');
+exports.svm = require('node-svm');
 
 // Q-Values
 exports.CSDAQValues = require('../lib/qValues').CSDAQValues;
